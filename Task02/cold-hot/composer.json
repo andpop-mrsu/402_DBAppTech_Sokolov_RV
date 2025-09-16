@@ -1,0 +1,26 @@
+{
+    "name": "sokol/cold-hot",
+    "description": "Game cold-hot",
+    "type": "project",
+    "bin": [
+        "bin/cold-hot"
+    ],
+    "autoload": {
+        "psr-4": {
+            "Sokol\\ColdHot\\": "src/"
+        },
+    "files": [
+        "src/Controller.php",
+        "src/View.php"
+    ]
+    },
+    "authors": [
+        {
+            "name": "Nevall von Goodem",
+            "email": "sokoloff.roman.ru@mail.ru"
+        }
+    ],
+    "require": {
+        "wp-cli/php-cli-tools": "^0.12.6"
+    }
+}

@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Холодно-Горячо (JS)</title>
+  <link rel="stylesheet" href="./styles/styles.css" />
+</head>
+<body>
+  <header class="app-header">
+    <h1>Игра «Холодно-Горячо»</h1>
+    <nav>
+      <button id="nav-new">Новая игра</button>
+      <button id="nav-history">История</button>
+      <button id="nav-help">Правила</button>
+    </nav>
+  </header>
+
+  <!-- Новая игра -->
+  <section id="screen-game" class="screen hidden">
+    <div class="card">
+      <h2>Новая игра</h2>
+      <div class="row">
+        <label>Имя игрока:
+          <input id="playerName" placeholder="Player" />
+        </label>
+        <button id="btnStart">Начать</button>
+      </div>
+
+      <div id="playArea" class="hidden">
+        <p class="muted">
+          Компьютер загадал <strong>трёхзначное число без повторяющихся цифр</strong>.
+          Введите число (например: 123). Команда <code>exit</code> — выход.
+        </p>
+
+        <div class="row">
+          <input id="guessInput" maxlength="3" inputmode="numeric" placeholder="123" />
+          <button id="btnGuess">Проверить</button>
+          <button id="btnGiveUp" class="ghost">Сдаться</button>
+        </div>
+
+        <div id="lastHints" class="hints"></div>
+
+        <h3>Ходы</h3>
+        <table class="log">
+          <thead>
+            <tr><th>#</th><th>Попытка</th><th>Подсказки</th></tr>
+          </thead>
+          <tbody id="logBody"></tbody>
+        </table>
+
+        <div id="finalResult" class="result hidden"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- История -->
+  <section id="screen-history" class="screen hidden">
+    <div class="card">
+      <h2>Сохранённые игры</h2>
+      <div class="row">
+        <button id="btnRefresh">Обновить</button>
+        <button id="btnClearDB" class="danger">Очистить БД</button>
+      </div>
+      <table class="log">
+        <thead>
+          <tr><th>ID</th><th>Дата</th><th>Игрок</th><th>Секрет</th><th>Исход</th><th>Попыток</th><th></th></tr>
+        </thead>
+        <tbody id="historyBody"></tbody>
+      </table>
+
+      <div id="replayArea" class="hidden">
+        <h3>Повтор партии #<span id="replayId"></span></h3>
+        <p class="muted">
+          Игрок: <span id="replayPlayer"></span>,
+          секрет: <span id="replaySecret"></span>,
+          исход: <span id="replayOutcome"></span>,
+          попыток: <span id="replayAttempts"></span>
+        </p>
+        <table class="log">
+          <thead>
+            <tr><th>#</th><th>Попытка</th><th>Подсказки</th></tr>
+          </thead>
+          <tbody id="replayBody"></tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- Правила -->
+  <section id="screen-help" class="screen hidden">
+    <div class="card">
+      <h2>Правила</h2>
+      <p>Компьютер загадывает трехзначное число без повторяющихся цифр (первая цифра ≠ 0).</p>
+      <p>После каждой попытки выводятся три подсказки (по одной на каждую цифру), отсортированные по алфавиту:</p>
+      <ul>
+        <li><strong>Горячо</strong> — цифра и позиция угаданы;</li>
+        <li><strong>Тепло</strong> — цифра есть, но на другой позиции;</li>
+        <li><strong>Холодно</strong> — цифры в числе нет.</li>
+      </ul>
+      <p>Пример: секрет <code>456</code>, попытка <code>546</code> → <code>Горячо Тепло Тепло</code>.</p>
+    </div>
+  </section>
+
+  <footer class="app-footer">
+    <span>Nevall von Goodem</span>
+  </footer>
+
+  <script defer src="./js/game.js"></script>
+  <script defer src="./js/db.js"></script>
+  <script defer src="./js/main.js"></script>
+</body>
+</html>
